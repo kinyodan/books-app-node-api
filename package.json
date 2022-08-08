@@ -9,7 +9,9 @@
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "start": "nodemon src/server.ts"
+
   },
   "author": "Daniel kinyo",
   "license": "ISC",
