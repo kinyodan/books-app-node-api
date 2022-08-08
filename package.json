@@ -11,7 +11,7 @@
     "dev": "nodemon src/server.ts",
     "start": "nodemon src/server.ts",
     "prepare": "husky install",
-    "build": "nodemon server.js"
+    "build": "nodemon build/server.js"
   },
   "author": "Daniel kinyo",
   "license": "ISC",
