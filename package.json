@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "start": "nodemon src/server.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "nodemon server.js"
   },
   "author": "Daniel kinyo",
   "license": "ISC",
