@@ -28,7 +28,6 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
                     if (err) throw err;
                     console.log(sql)
                     query_data = result
-                    return result
                 })
                 connection.release();
             });
