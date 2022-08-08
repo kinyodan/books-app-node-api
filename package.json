@@ -8,7 +8,6 @@
     "npm": "8.13.x"
   },
   "scripts": {
-    "dev": "nodemon src/server.ts"
   },
   "author": "Daniel kinyo",
   "license": "ISC",
