@@ -9,9 +9,8 @@
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "build": "webpack --config webpack.config.js",
-    "start": "nodemon src/server.ts"
-
+    "start": "nodemon src/server.ts",
+    "prepare": "husky install"
   },
   "author": "Daniel kinyo",
   "license": "ISC",
@@ -32,7 +31,10 @@
     "workerpool": "^6.2.1"
   },
   "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  }
+  },
+  "sripts-scriptname": "husky install"
 }
