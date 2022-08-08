@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server.ts",
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "8.13.x"
   },
   "scripts": {
     "dev": "nodemon src/server.ts"
