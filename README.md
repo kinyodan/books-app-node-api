@@ -15,6 +15,10 @@ $ npm run dev
 $ npm run build
 $ npm run start
 ```
+## Heroku applications 
+Front End app : <a href="https://book-of-ice-tpm.herokuapp.com"> Here</a>
+Back-End Api : <a href="https://topupmama-bcknd-main.herokuapp.com"> Here</a>
+Back-End Service APi : <a href="https://topupmama-bcknd-service.herokuapp.com/"> Here</a>
 
 ## Work flow Diagram
 The workflow architecture documentation and ERD are here : <a href="https://drive.google.com/drive/folders/1kcibDqOtcO_4CrTUvK1_Gb0tW4vf0Dwi?ths=true">Architecture documents </a>
