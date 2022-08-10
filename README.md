@@ -15,22 +15,19 @@ $ npm run dev
 $ npm run build
 $ npm run start
 ```
-
 ## Heroku applications 
-Front End app : <a href="https://book-of-ice-tpm.herokuapp.com"> Here</a></br>
-Back-End Api : <a href="https://topupmama-bcknd-main.herokuapp.com"> Here</a></br>
-Back-End Service APi : <a href="https://topupmama-bcknd-service.herokuapp.com/"> Here</a>
+Front End app  <a href="https://book-of-ice-tpm.herokuapp.com"> Here</a></br>
+Back-End Api  <a href="https://topupmama-bcknd-main.herokuapp.com"> Here</a></br>
+Back-End Service APi  <a href="https://topupmama-bcknd-service.herokuapp.com/"> Here</a>
 
 ## Work flow Diagram
-click here to open the workflow architecture documentation and ERD
+The workflow architecture documentation and ERD are here : <a href="https://drive.google.com/drive/folders/1kcibDqOtcO_4CrTUvK1_Gb0tW4vf0Dwi?ths=true">Architecture documents </a>
 
 ## API Documentation
-Api documentation is on postman link to postman collection here Api documentation
-<a href="https://www.postman.com/lunar-crescent-756083/workspace/my-workspace/request/21024605-98348242-b79d-4993-ba48-f7fe9f2c23b1">
+Api documentation is on postman link to postman collection here  <a href="https://www.postman.com/lunar-crescent-756083/workspace/my-workspace/request/21024605-98348242-b79d-4993-ba48-f7fe9f2c23b1">
  The Api documentation
 </a>
-### Links to the heroku app Instances below
- F
+
 ### All project repos are below
 Front End UI https://github.com/kinyodan/book-of-ice-ui
 
@@ -46,5 +43,5 @@ Built a Rails API as an RPC service to the node to run the lengthy tasks and hav
 
 The repository for this service is at.
 
-https://github.com/kinyodan/tpm-backend-service/tree/development
+https://github.com/kinyodan/tpm-backend-service/tree/master
 
