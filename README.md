@@ -1,5 +1,5 @@
-###books-app-node-api
-##
+## books-app-node-api
+
 Node js Api application to serve the book app front end UI for the iceandfire Api
 
 Build Setup
@@ -16,18 +16,18 @@ $ npm run build
 $ npm run start
 ```
 
-Work flow Diagram
+## Work flow Diagram
 click here to open the workflow architecture documentation and ERD
 
-API Documentation
+## API Documentation
 Api documentation is on postman link to postman collection here Api documentation
 
-All project repos are below
+### All project repos are below
 Front End UI https://github.com/kinyodan/book-of-ice-ui
 
 Nodejs Back-end Api https://github.com/kinyodan/books-app-node-api
 
-Backend Service Api
+## Backend Service Api
 
 Built a Back-end API applicatiion to serve the Nodejs Back-end Api.Some Data retrival and api calls from and the Iceand fire api took to long to query per request.
 
