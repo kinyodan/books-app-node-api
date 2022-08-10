@@ -37,5 +37,5 @@ Built a Rails API as an RPC service to the node to run the lengthy tasks and hav
 
 The repository for this service is at.
 
-https://github.com/kinyodan/tpm-backend-service/tree/development
+https://github.com/kinyodan/tpm-backend-service/tree/master
 
