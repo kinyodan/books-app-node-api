@@ -1,30 +1,25 @@
 {
-  "name": "books-api-node",
+  "name": "books-node-api",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
-  "engines": {
-    "node": "14.x"
-  },
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
-    "build": "rm -rf build/ && prettier --write src/ && tsc"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon source/server.ts",
+    "build": "rm -rf build/ "
   },
-  "author": "Daniel kinyo",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.13",
     "@types/morgan": "^1.9.3",
     "axios": "^0.27.2",
-    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
     "nodemon": "^2.0.19",
-    "pg": "^8.7.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.7.4",
-    "workerpool": "^6.2.1"
+    "typescript": "^4.7.4"
   }
 }
