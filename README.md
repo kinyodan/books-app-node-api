@@ -17,7 +17,7 @@ $ npm run start
 ```
 
 ## Work flow Diagram
-click here to open the workflow architecture documentation and ERD <a href="https://drive.google.com/drive/folders/1kcibDqOtcO_4CrTUvK1_Gb0tW4vf0Dwi?ths=true">Architecture documents </a>
+The workflow architecture documentation and ERD care here to: <a href="https://drive.google.com/drive/folders/1kcibDqOtcO_4CrTUvK1_Gb0tW4vf0Dwi?ths=true">Architecture documents </a>
 
 ## API Documentation
 Api documentation is on postman link to postman collection here  <a href="https://www.postman.com/lunar-crescent-756083/workspace/my-workspace/request/21024605-98348242-b79d-4993-ba48-f7fe9f2c23b1">
