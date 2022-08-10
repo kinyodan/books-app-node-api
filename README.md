@@ -20,7 +20,9 @@ $ npm run start
 click here to open the workflow architecture documentation and ERD
 
 ## API Documentation
-Api documentation is on postman link to postman collection here Api documentation
+Api documentation is on postman link to postman collection here  <a href="https://www.postman.com/lunar-crescent-756083/workspace/my-workspace/request/21024605-98348242-b79d-4993-ba48-f7fe9f2c23b1">
+ The Api documentation
+</a>
 
 ### All project repos are below
 Front End UI https://github.com/kinyodan/book-of-ice-ui
