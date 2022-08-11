@@ -34,10 +34,14 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let connectionWrite = mysql.createPool(dbconfig);
-        console.log("connectionWrite-------")
-        console.log(dbconfig)
-        console.log("connectionWrite-------")
+        let connectionWrite = mysql.createPool({
+            host: process.env.PRODUCTION_DB_HOST || 'us-cdbr-iron-east-02.cleardb.net',
+            user: process.env.PRODUCTION_DB_USER || 'b2eb7f5d522aef',
+            password: process.env.PRODUCTION_DB_PASSWORD || '19ad1620',
+            database: process.env.PRODUCTION_DATABASE || 'heroku_32f323172c70e52',
+            connectionLimit : 10,
+            debug:  false
+        });
 
         if (write) {
              connectionWrite.getConnection(function (err: any,connection: any) {
