@@ -34,13 +34,14 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let connectionWrite = mysql.createPool(dbconfig);
-        console.log( "config-----------------------")
+        let connectionWrite = mysql.createConnection({  })
+        // mysql.createPool(dbconfig);
+        console.log("config-----------------------")
         console.log(dbconfig.dbconfig)
-        console.log( "config-----------------------")
+        console.log("config-----------------------")
 
         if (write) {
-             connectionWrite.getConnection(function (err: any,connection: any) {
+             connectionWrite.connect(function (err: any,connection: any) {
                  console.log('Connected to the MySQL --- server.write');
                  if (err) {
                     return console.error('error: ' + err.message);
