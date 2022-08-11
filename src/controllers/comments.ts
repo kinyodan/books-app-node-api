@@ -56,7 +56,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                  connection.release();
              });
 
-            connectionWrite.getConnection(function (err: any, connection: any) {
+            connectionWrite.connect(function (err: any, connection: any) {
                 console.log("comments getConnection for write ");
                 if (err) {
                     return console.error('error: ' + err.message);
