@@ -12,7 +12,7 @@ if(process.env.NODE_ENV === 'production'){
       database: process.env.PRODUCTION_DATABASE || 'heroku_32f323172c70e52',
       connectionLimit : 10,
       debug:  false
-    };
+    }
 }
 
 // Config Development
