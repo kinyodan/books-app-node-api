@@ -35,12 +35,21 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
         let connectionWrite = mysql.createPool({
-            host: 'us-cdbr-iron-east-02.cleardb.net',
-            user: 'b2eb7f5d522aef',
-            password: '19ad1620',
-            database: 'heroku_32f323172c70e52',
-            reconnect: true
+            host: process.env.PRODUCTION_DB_HOST || 'us-cdbr-iron-east-02.cleardb.net',
+            user: process.env.PRODUCTION_DB_USER || 'b2eb7f5d522aef',
+            password: process.env.PRODUCTION_DB_PASSWORD || '19ad1620',
+            database: process.env.PRODUCTION_DATABASE || 'heroku_32f323172c70e52',
         });
+
+        console.log( "config-----------------------")
+        let config = {
+            host: process.env.PRODUCTION_DB_HOST || '',
+            user: process.env.PRODUCTION_DB_USER || '',
+            password: process.env.PRODUCTION_DB_PASSWORD || '',
+            database: process.env.PRODUCTION_DATABASE || '',
+        }
+        console.log(config)
+        console.log( "config-----------------------")
 
         if (write) {
              connectionWrite.getConnection(function (err: any,connection: any) {
