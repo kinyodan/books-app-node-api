@@ -9,10 +9,10 @@ import dbconfig = require("../dbconfig");
 
 const connectDb = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let dbconnection = mysql.createPool(dbconfig);
+        let dbconnection = mysql.createConnection(dbconfig.dbconfig);
 
         if (read) {
-            dbconnection.getConnection(async function (err: any, connection:any) {
+            dbconnection.connect(async function (err: any, connection:any) {
                 console.log('Connected to the MySQL --- server.read_db');
                 if (err) {
                     return console.error('error: ' + err.message);
@@ -24,7 +24,7 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
                     console.log(sql)
                     query_data = result
                 })
-                connection.release();
+                // connection.release();
             });
         }
     } catch (error) {
