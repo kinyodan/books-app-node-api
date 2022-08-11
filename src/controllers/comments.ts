@@ -20,7 +20,7 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
                 if (err) {
                     result_status = false
                     result_message = err.message
-                    return console.error('error: ' + err.message);
+                    // return console.error('error: ' + err.message);
                 }
                 let sql = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
                 connection.query(sql, function (err: any, result: any) {
@@ -47,7 +47,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 if (err) {
                     result_status = false
                     result_message = err.message
-                    return console.error('error: ' + err.message);
+                    // return console.error('error: ' + err.message);
                 }
                 let sql_write = "INSERT INTO comments (comment, commenter_ip_adress, book_isbn) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + ")";
                 connection.query(sql_write, function (err: any, result: any) {
@@ -67,7 +67,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                     if (err) {
                         result_status = false
                         result_message = err
-                        return console.error('error: ' + err.message);
+                        // return console.error('error: ' + err.message);
                     }
                 }
                 let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";

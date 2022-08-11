@@ -5,9 +5,12 @@ import axios, {AxiosResponse} from "axios";
 
 const dotenv = require("dotenv");
 dotenv.config();
-let books_query_data: any = []
 // @ts-ignore
 import dbconfig = require("../dbconfig");
+
+let books_query_data: any = []
+let result_status = true
+let result_message: any = "listed "
 
 // helper methods - SCROLL DOWN FOR API ENDPOINTS SECTION------------------------------
 //
@@ -21,6 +24,8 @@ async function threadGetCharacter(characters: any) {
             dataList.push(result.data);
         } catch (e: any) {
             console.log(e.Message);
+            result_status = false
+            result_message = e.message
         }
         return dataList;
     }
@@ -49,13 +54,18 @@ const connectDb = async (
 
         if (read) {
             dbconnection.getConnection(async function (err: any, connection: any) {
-                console.log("Connected to the MySQL --- server.read_db");
                 if (err) {
-                    return console.error("error: " + err.message);
+                    result_status = false
+                    result_message = err.message
+                    console.error("error: " + err.message);
                 }
                 let sql = "SELECT * FROM comments ";
                 connection.query(sql, function (err: any, result: any) {
-                    if (err) throw err;
+                    if (err) {
+                        result_status = false
+                        result_message = err.message
+                        throw err;
+                    }
                     comments_query_data = result
                     return result
                 });
@@ -85,8 +95,8 @@ const getBooksList = async (req: Request, res: Response) => {
     connectDb(true, false, "all").then((r) => console.log(r));
     _set_comments_count()
     return res.status(200).json({
-        status: true,
-        message: "books listed ",
+        status: result_status,
+        message: result_message,
         data: books_query_data.data,
     });
 };
@@ -100,8 +110,8 @@ const getBook = async (req: Request, res: Response) => {
     let book = result.data;
 
     return res.status(200).json({
-        status: true,
-        message: "books listed ",
+        status: result_status,
+        message: "books: "+result_status,
         data: book,
     });
 };
@@ -112,7 +122,7 @@ const getBookCharacters = async (req: Request, res: Response) => {
     characters_list = await threadGetCharacter(book_character_urls);
     return res.status(200).json({
         status: true,
-        message: "Characters listed ",
+        message: "Characters: "+result_status,
         data: characters_list,
     });
 };
