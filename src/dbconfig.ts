@@ -1,6 +1,6 @@
+let mysql = require('mysql');
 const dotenv = require("dotenv")
 dotenv.config()
-
 let dbconfig: any = {}
 
 // Config production
@@ -17,15 +17,17 @@ if(process.env.NODE_ENV === 'production'){
 if (process.env.NODE_ENV === 'development') {
     console.log("Config Development")
     dbconfig = {
-      host: process.env.LOCAL_DB_HOST || 'us-cdbr-iron-east-02.cleardb.net',
-      user: process.env.LOCAL_DB_USER || 'b2eb7f5d522aef',
-      password: process.env.LOCAL_DB_PASSWORD || '19ad1620',
-      database: process.env.LOCAL_DATABASE || 'heroku_32f323172c70e52',
+      host: process.env.LOCAL_DB_HOST ,
+      user: process.env.LOCAL_DB_USER ,
+      password: process.env.LOCAL_DB_PASSWORD ,
+      database: process.env.LOCAL_DATABASE ,
       connectionLimit: 10,
       debug: false
    };
 }
 
-export {
-    dbconfig
+let db_connection = mysql.createPool(dbconfig);
+
+export default {
+    db_connection
 }
