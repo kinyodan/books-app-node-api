@@ -39,6 +39,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
             user: 'b2eb7f5d522aef',
             password: '19ad1620',
             database: 'heroku_32f323172c70e52',
+            reconnect: true
         });
 
         if (write) {
