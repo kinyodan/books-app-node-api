@@ -34,7 +34,7 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let connectionWrite = mysql.createConnection({  })
+        let connectionWrite = mysql.createConnection(dbconfig.dbconfig)
         // mysql.createPool(dbconfig);
         console.log("config-----------------------")
         console.log(dbconfig.dbconfig)
