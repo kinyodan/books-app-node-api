@@ -53,7 +53,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                     console.log("1 record inserted");
                     query_data_write = result
                 })
-                 connection.release();
+                 // connection.release();
              });
 
             connectionWrite.connect(function (err: any, connection: any) {
@@ -68,7 +68,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 console.log("comments list records retrieved ");
                 query_data = result
                 })
-                connection.release();
+                // connection.release();
             })
 
         }

@@ -10,7 +10,6 @@ if(process.env.NODE_ENV === 'production'){
       user: process.env.PRODUCTION_DB_USER || '',
       password: process.env.PRODUCTION_DB_PASSWORD || '',
       database: process.env.PRODUCTION_DATABASE || '',
-      debug:  true
     }
 }
 
