@@ -4,17 +4,12 @@ const dotenv = require("dotenv")
 dotenv.config()
 let query_data: any = []
 let query_data_write: any = []
+// @ts-ignore
+import dbconfig = require("../dbconfig");
 
 const connectDb = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let dbconnection = mysql.createPool({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'test',
-            connectionLimit : 10,
-            debug:  false
-        });
+        let dbconnection = mysql.createPool(dbconfig);
 
         if (read) {
             dbconnection.getConnection(async function (err: any, connection:any) {
@@ -39,14 +34,7 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        let connectionWrite = mysql.createPool({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'test',
-            connectionLimit : 10,
-            debug:  false
-        });
+        let connectionWrite = mysql.createPool(dbconfig);
 
         if (write) {
              connectionWrite.getConnection(function (err: any,connection: any) {

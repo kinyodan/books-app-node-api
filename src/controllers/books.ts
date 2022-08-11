@@ -1,14 +1,19 @@
-import { Request, Response } from "express";
+import {Request, Response} from "express";
+
 let mysql = require("mysql");
-import axios, { AxiosResponse } from "axios";
+import axios, {AxiosResponse} from "axios";
+
 const dotenv = require("dotenv");
 dotenv.config();
 let books_query_data: any = []
+// @ts-ignore
+import dbconfig = require("../dbconfig");
 
 // helper methods - SCROLL DOWN FOR API ENDPOINTS SECTION------------------------------
 //
 
 const dataList: any = [];
+
 async function threadGetCharacter(characters: any) {
     for (const character of characters) {
         try {
@@ -22,12 +27,13 @@ async function threadGetCharacter(characters: any) {
 }
 
 let comments_query_data: any = []
+
 async function _set_comments_count() {
     for (let i = 0; i < books_query_data.data.length; i++) {
         let result = comments_query_data.filter((comment: any) => {
             return comment.book_isbn === books_query_data.data[i].isbn;
         });
-        books_query_data.data[i]['comments_count']=result.length
+        books_query_data.data[i]['comments_count'] = result.length
     }
     return books_query_data;
 }
@@ -39,14 +45,7 @@ const connectDb = async (
 ) => {
     try {
 
-        let dbconnection = mysql.createPool({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "test",
-            connectionLimit: 10,
-            debug: false,
-        });
+        let dbconnection = mysql.createPool(dbconfig);
 
         if (read) {
             dbconnection.getConnection(async function (err: any, connection: any) {
@@ -57,7 +56,7 @@ const connectDb = async (
                 let sql = "SELECT * FROM comments ";
                 connection.query(sql, function (err: any, result: any) {
                     if (err) throw err;
-                    comments_query_data=result
+                    comments_query_data = result
                     return result
                 });
                 connection.release();
@@ -120,7 +119,6 @@ const getBookCharacters = async (req: Request, res: Response) => {
 
 //
 // end api endpoints ----------------------------
-
 
 
 export default {
