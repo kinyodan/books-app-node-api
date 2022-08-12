@@ -47,6 +47,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                     result_message = err
                     // return console.error('error: ' + err.message);
                 }
+                console.log(connection)
                 let sql_write = "INSERT INTO comments (comment, commenter_ip_adress, book_isbn) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + ")";
                 connection.query(sql_write, function (result: any) {
                     // if (err) {
