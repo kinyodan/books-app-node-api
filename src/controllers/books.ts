@@ -99,7 +99,7 @@ const getBooksList = async (req: Request, res: Response) => {
     _set_comments_count()
     return res.status(200).json({
         status: result_status,
-        message: result_message,
+        message: "Books: Listed",
         data: books_query_data.data,
     });
 };
