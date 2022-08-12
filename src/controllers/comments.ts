@@ -54,6 +54,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 console.log("1 record inserted");
                 query_data_write = result
             })
+            console.log(connection);
             console.log("Connected! to pg--------------------------------------------------------------");
 
         });
