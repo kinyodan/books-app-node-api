@@ -29,6 +29,7 @@ const connectDbRead = async (data: any, read: boolean, write: boolean, destinati
                     if (err) {
                       result_status = false
                       result_message = err
+                        console.log(err)
                       throw err;
                     }
                     query_data = result.rows
