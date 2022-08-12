@@ -57,8 +57,8 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                         throw err;
                     }
                     result_message = "Saved succesfully"
-                    connection.end();
                 })
+                connection.end();
             });
 
             dbconfig.default.pg_client.connect(function (err: any, connection: any) {
@@ -71,8 +71,8 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 connection.query(sql_read, function (err: any, result: any) {
                     if (err) throw err;
                     query_data_write = result
-                    connection.end();
                 })
+                connection.end();
             })
         }
 
