@@ -64,11 +64,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
 
             connectionWrite.getConnection(function (err: any, connection: any) {
                 if (err) {
-                    if (err) {
-                        result_status = false
-                        result_message = err
-                        // return console.error('error: ' + err.message);
-                    }
+                    result_status = false
+                    result_message = err
+                    // return console.error('error: ' + err.message);
                 }
                 let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
                 connection.query(sql_read, function (err: any, result: any) {
@@ -95,7 +93,7 @@ const createComment = async (req: Request, res: Response) => {
     connectDbWrite(comment_data, false, true, "comments").then(r => console.log(r))
     return res.status(200).json({
         status: result_status,
-        message: result_message,
+        message: "Comment: "+ result_message,
         data: query_data_write
     });
 };
@@ -103,16 +101,16 @@ const createComment = async (req: Request, res: Response) => {
 const updateComment = async (req: Request, res: Response) => {
     connectDbWrite(req.body, false, true, "comments").then(r => console.log(r))
     return res.status(200).json({
-        status: true,
-        message: "Comments Updated Successfully",
+        status: result_status,
+        message: "Comment: "+ result_message,
     });
 };
 
 const deleteComment = async (req: Request, res: Response) => {
     connectDbWrite(req.body, false, true, "comments").then(r => console.log(r))
     return res.status(200).json({
-        status: true,
-        message: "Comment deleted Successfully",
+        status: result_status,
+        message: "Comment: "+result_message,
     });
 };
 
