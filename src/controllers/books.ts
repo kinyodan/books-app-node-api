@@ -114,7 +114,7 @@ const getBook = async (req: Request, res: Response) => {
 
     return res.status(200).json({
         status: result_status,
-        message: "books: "+result_status,
+        message: "book: Listed",
         data: book,
     });
 };
@@ -125,7 +125,7 @@ const getBookCharacters = async (req: Request, res: Response) => {
     characters_list = await threadGetCharacter(book_character_urls);
     return res.status(200).json({
         status: true,
-        message: "Characters: "+result_status,
+        message: "Characters: "+ result_message,
         data: characters_list,
     });
 };
