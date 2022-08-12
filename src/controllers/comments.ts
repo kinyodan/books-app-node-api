@@ -1,6 +1,4 @@
 import {query, Request, Response} from "express";
-
-let mysql = require('mysql');
 const dotenv = require("dotenv")
 dotenv.config()
 let query_data: any = []
