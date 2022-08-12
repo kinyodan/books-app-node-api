@@ -25,12 +25,22 @@ const getCharactersList = async (req: Request, res: Response) => {
 };
 
 const getAllCharactersList = async (req: Request, res: Response) => {
-    let requestData: any = JSON.parse(Object.keys(req.body)[0]);
-    let req_data = {
-        isbn: requestData.isbn,
-        sortBy: requestData.sortBy,
-        filters: requestData.filters,
-    };
+    let requestKeys = Object.keys(req.body)
+    let requestDatavalues = Object.values(req.body)
+    let req_data: any = {}
+
+    requestKeys.forEach(function (value, index) {
+        req_data[value] = requestDatavalues[index]
+    });
+
+    // let requestData: any = JSON.parse(Object.keys(req.body)[0]);
+
+    // let req_data = {
+    //     isbn: requestData.isbn,
+    //     sortBy: requestData.sortBy,
+    //     filters: requestData.filters,
+    // };
+    console.log(req_data)
 
     let result: AxiosResponse = await axios.post(
         `${process.env.SERVICE_API_URL}/get_all_characters`,

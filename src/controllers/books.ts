@@ -50,27 +50,31 @@ const connectDb = async (
 ) => {
     try {
 
-        let dbconnection = mysql.createPool(dbconfig);
         if (read) {
-            dbconnection.getConnection(async function (err: any, connection: any) {
+
+            // set Db connection for write
+            dbconfig.default.pg_client.connect(function (err: any, connection: any) {
                 if (err) {
                     result_status = false
                     result_message = err.message
-                    console.error("error: " + err.message);
+                    return console.error('error: ' + err.message);
                 }
+
                 let sql = "SELECT * FROM comments ";
                 connection.query(sql, function (err: any, result: any) {
                     if (err) {
                         result_status = false
-                        result_message = err.message
+                        result_message = err
+                        console.log(err)
                         throw err;
                     }
-                    comments_query_data = result
+                    comments_query_data = result.rows
+                    result_message = "Listed"
                     return result
-                });
-                connection.release();
+                })
             });
         }
+
     } catch (error) {
         console.log(error);
     }
