@@ -51,7 +51,6 @@ const connectDb = async (
     try {
 
         let dbconnection = mysql.createPool(dbconfig);
-
         if (read) {
             dbconnection.getConnection(async function (err: any, connection: any) {
                 if (err) {

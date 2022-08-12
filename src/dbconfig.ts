@@ -11,6 +11,8 @@ if(process.env.NODE_ENV === 'production'){
       password: process.env.PRODUCTION_DB_PASSWORD || '',
       database: process.env.PRODUCTION_DATABASE || '',
       acquireTimeout:6000000,
+      port: 3306,
+
     }
 }
 
