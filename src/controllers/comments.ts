@@ -67,19 +67,6 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 })
             });
 
-            // dbconfig.default.pg_client.connect(function (err: any, connection: any) {
-            //     if (err) {
-            //         result_status = false
-            //         result_message = err
-            //         return console.error('error: ' + err.message);
-            //     }
-            //     let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
-            //     connection.query(sql_read, function (err: any, result: any) {
-            //         if (err) throw err;
-            //         query_data_write = result
-            //         connection.end();
-            //     })
-            // })
         }
 
     } catch (error) {
@@ -103,7 +90,7 @@ const createComment = async (req: Request, res: Response) => {
     return res.status(200).json({
         status: result_status,
         message: "Comment: "+ result_message,
-        data: query_data_write
+        data: {comments: query_data_write}
     });
 };
 
