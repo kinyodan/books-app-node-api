@@ -45,16 +45,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
     try {
 
         if (write) {
-            console.log("Connected! to pg-------------------------------------------------------------");
-            console.log("Connected! to pg-------------------------------------------------------------");
-            console.log("Connected! to pg------------------jjjj-------------------------------------------");
-
             dbconfig.default.pg_client.connect(function (err: any, connection: any) {
                 if (err) throw err;
-                console.log("Connected! to pg-------------------------------------------------------------");
                 const now = new Date(Date.now()).toISOString();
-                console.log(now);
-
                 let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at,updated_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'${now}'` + "," + `'${now}'` + ")";
                 connection.query(sql_write, function (err: any, result: any) {
                     if (err) {
@@ -63,14 +56,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                         result_message = err
                         throw err;
                     }
-                    console.log("1 record inserted");
                     result_message = "Saved succesfully"
-
-                    // query_data_write = result
                     connection.end();
                 })
-                console.log("Connected! to pg--------------------------------------------------------------");
-
             });
 
             dbconfig.default.pg_client.connect(function (err: any, connection: any) {
@@ -83,15 +71,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 connection.query(sql_read, function (err: any, result: any) {
                     if (err) throw err;
                     query_data_write = result
-                    console.log(query_data_write)
                     connection.end();
                 })
-                // connection.release();
             })
-
-            console.log("Connected! to pg------------------jjjj-------------------------------------------");
-            console.log("Connected! to pg-------------------------------------------------------------");
-            console.log("Connected! to pg-------------------------------------------------------------");
         }
 
     } catch (error) {
@@ -108,6 +90,10 @@ const createComment = async (req: Request, res: Response) => {
         comment_data[value] = requestDatavalues[index]
     });
     connectDbWrite(comment_data, false, true, "comments").then(r => console.log(r))
+    console.log("query_data_write----------------------")
+    console.log(query_data_write)
+    console.log("query_data_write-------------------------")
+
     return res.status(200).json({
         status: result_status,
         message: "Comment: "+ result_message,
