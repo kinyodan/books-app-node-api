@@ -46,8 +46,10 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
         dbconfig.default.pg_client.connect(function(err: any,connection:any) {
             if (err) throw err;
             console.log("Connected! to pg-------------------------------------------------------------");
-            console.log(Date.now())
-            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${Date.now()} / 1000.0)'`+ ")";
+            const now = new Date();
+            console.log(now);
+
+            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${now} / 1000.0)'`+ ")";
             connection.query(sql_write, function (err: any, result: any) {
                 if (err) {
                     console.log(err);
