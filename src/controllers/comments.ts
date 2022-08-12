@@ -71,20 +71,21 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
 
             });
 
-            // dbconfig.default.pg_client.connect(function (err: any, connection: any) {
-            //     if (err) {
-            //         result_status = false
-            //         result_message = err
-            //         return console.error('error: ' + err.message);
-            //     }
-            //     let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
-            //     connection.query(sql_read, function (err: any, result: any) {
-            //         console.log(result)
-            //         if (err) throw err;
-            //         query_data = result
-            //     })
-            //     // connection.release();
-            // })
+            dbconfig.default.pg_client.connect(function (err: any, connection: any) {
+                if (err) {
+                    result_status = false
+                    result_message = err
+                    return console.error('error: ' + err.message);
+                }
+                let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
+                connection.query(sql_read, function (err: any, result: any) {
+                    console.log(result)
+                    if (err) throw err;
+                    query_data = result
+                    connection.end();
+                })
+                // connection.release();
+            })
 
             console.log("Connected! to pg------------------jjjj-------------------------------------------");
             console.log("Connected! to pg-------------------------------------------------------------");
