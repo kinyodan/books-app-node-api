@@ -49,7 +49,7 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
             const now = new Date();
             console.log(now.toISOString());
 
-            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${now.toISOString()} / 1000.0)'`+ ")";
+            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${now.toISOString()},'YYYY-MM-DD HH:MI:SS')'`+ ")";
             connection.query(sql_write, function (err: any, result: any) {
                 if (err) {
                     console.log(err);
