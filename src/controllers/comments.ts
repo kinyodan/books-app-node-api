@@ -43,36 +43,62 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        dbconfig.default.pg_client.connect(function(err: any,connection:any) {
-            if (err) throw err;
-            console.log("Connected! to pg-------------------------------------------------------------");
-            const now = new Date();
-            console.log(now.toUTCString());
 
-            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${now.toUTCString()},'YYYY-MM-DD HH:MI:SS')'`+ ")";
-            connection.query(sql_write, function (err: any, result: any) {
-                if (err) {
-                    console.log(err);
-                    result_status = false
-                    result_message = err
-                    throw err;
-                }
-                console.log("1 record inserted");
-                query_data_write = result
-            })
-            console.log("Connected! to pg--------------------------------------------------------------");
-
-        });
-
-        let connectionWrite = dbconfig.default.db_connection;
         if (write) {
-            connectionWrite.getConnection(function (err: any, connection: any) {
+            console.log("Connected! to pg-------------------------------------------------------------");
+            console.log("Connected! to pg-------------------------------------------------------------");
+            console.log("Connected! to pg------------------jjjj-------------------------------------------");
+
+            dbconfig.default.pg_client.connect(function (err: any, connection: any) {
+                if (err) throw err;
+                console.log("Connected! to pg-------------------------------------------------------------");
+                const now = new Date();
+                console.log(now.toUTCString());
+
+                let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'to_timestamp(${now.toUTCString()},'YYYY-MM-DD HH:MI:SS')'` + ")";
+                connection.query(sql_write, function (err: any, result: any) {
+                    if (err) {
+                        console.log(err);
+                        result_status = false
+                        result_message = err
+                        throw err;
+                    }
+                    console.log("1 record inserted");
+                    query_data_write = result
+                })
+                console.log("Connected! to pg--------------------------------------------------------------");
+
+            });
+
+            dbconfig.default.pg_client.connect(function (err: any, connection: any) {
                 if (err) {
                     result_status = false
                     result_message = err
                     return console.error('error: ' + err.message);
                 }
-                let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn, created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + `'${Date.now()}'`+ ")";
+                let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
+                connection.query(sql_read, function (err: any, result: any) {
+                    if (err) throw err;
+                    query_data = result
+                })
+                connection.release();
+            })
+
+            console.log("Connected! to pg------------------jjjj-------------------------------------------");
+            console.log("Connected! to pg-------------------------------------------------------------");
+            console.log("Connected! to pg-------------------------------------------------------------");
+        }
+
+        let connectionWrite = dbconfig.default.db_connection;
+        if (write) {
+            connectionWrite.getConnection(function (err: any, connection: any) {
+                const now = new Date();
+                if (err) {
+                    result_status = false
+                    result_message = err
+                    return console.error('error: ' + err.message);
+                }
+                let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn, created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + `'${now.toUTCString()}'`+ ")";
                 connection.query(sql_write, function (err: any, result: any) {
                     if (err) {
                       result_status = false
