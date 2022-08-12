@@ -46,14 +46,14 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
             connectionWrite.getConnection(function (err: any, connection: any) {
                 if (err) {
                     result_status = false
-                    result_message = err.message
+                    result_message = err
                     // return console.error('error: ' + err.message);
                 }
                 let sql_write = "INSERT INTO comments (comment, commenter_ip_adress, book_isbn) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + ")";
                 connection.query(sql_write, function (err: any, result: any) {
                     if (err) {
                         result_status = false
-                        result_message = err.message
+                        result_message = err
                         throw err;
                     }
                     console.log("1 record inserted");
