@@ -58,14 +58,12 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                     }
                     result_message = "Saved succesfully"
                     return result
-                    // connection.end();
                 })
 
                 let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
                 connection.query(sql_read, function (err: any, result: any) {
                     if (err) throw err;
-                    query_data_write = result
-                    // connection.end();
+                    query_data_write = result.rows
                 })
             });
 
