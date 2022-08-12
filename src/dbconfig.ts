@@ -41,8 +41,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 let db_connection = mysql.createPool(dbconfigMysql);
-const pg_client = new Client(dbconfigPg)
+// const pg_client = new Client(dbconfigPg)
 
+const pg_client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+});
 export default {
     db_connection,
     pg_client
