@@ -41,6 +41,10 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
+        dbconfig.default.pg_client.connect(function(err: any) {
+            if (err) throw err;
+            console.log("Connected! to pg");
+        });
         let connectionWrite = dbconfig.default.db_connection;
         if (write) {
             connectionWrite.getConnection(function (err: any, connection: any) {
