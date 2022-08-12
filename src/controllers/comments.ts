@@ -3,6 +3,8 @@ import {query, Request, Response} from "express";
 let mysql = require('mysql');
 const dotenv = require("dotenv")
 dotenv.config()
+const parse = require('postgres-date')
+
 let query_data: any = []
 let query_data_write: any = []
 let result_status = true
@@ -44,7 +46,8 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
         dbconfig.default.pg_client.connect(function(err: any,connection:any) {
             if (err) throw err;
             console.log("Connected! to pg-------------------------------------------------------------");
-            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'${Date.now()}'`+ ")";
+            let timeStamp = parse(Date.now())
+            let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn,created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + "," + `'${timeStamp}'`+ ")";
             connection.query(sql_write, function (err: any, result: any) {
                 if (err) {
                     console.log(err);
