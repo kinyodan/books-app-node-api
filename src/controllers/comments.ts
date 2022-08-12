@@ -41,10 +41,23 @@ const connectDb = async (data: any, read: boolean, write: boolean, destination: 
 
 const connectDbWrite = async (data: any, read: boolean, write: boolean, destination: string) => {
     try {
-        dbconfig.default.pg_client.connect(function(err: any) {
+        dbconfig.default.pg_client.connect(function(err: any,connection:any) {
             if (err) throw err;
-            console.log("Connected! to pg");
+            console.log("Connected! to pg-------------------------------------------------------------");
+            let sql_write = "INSERT INTO comments (comment, commenter_ip_adress, book_isbn) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + ")";
+            connection.query(sql_write, function (err: any, result: any) {
+                if (err) {
+                    result_status = false
+                    result_message = err
+                    throw err;
+                }
+                console.log("1 record inserted");
+                query_data_write = result
+            })
+            console.log("Connected! to pg--------------------------------------------------------------");
+
         });
+
         let connectionWrite = dbconfig.default.db_connection;
         if (write) {
             connectionWrite.getConnection(function (err: any, connection: any) {
