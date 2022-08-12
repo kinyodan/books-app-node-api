@@ -70,62 +70,64 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
 
             });
 
-            dbconfig.default.pg_client.connect(function (err: any, connection: any) {
-                if (err) {
-                    result_status = false
-                    result_message = err
-                    return console.error('error: ' + err.message);
-                }
-                let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
-                connection.query(sql_read, function (err: any, result: any) {
-                    if (err) throw err;
-                    query_data = result
-                })
-                connection.release();
-            })
+            // dbconfig.default.pg_client.connect(function (err: any, connection: any) {
+            //     if (err) {
+            //         result_status = false
+            //         result_message = err
+            //         return console.error('error: ' + err.message);
+            //     }
+            //     let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
+            //     connection.query(sql_read, function (err: any, result: any) {
+            //         console.log(result)
+            //         if (err) throw err;
+            //         query_data = result
+            //     })
+            //     // connection.release();
+            // })
 
             console.log("Connected! to pg------------------jjjj-------------------------------------------");
             console.log("Connected! to pg-------------------------------------------------------------");
             console.log("Connected! to pg-------------------------------------------------------------");
         }
 
-        let connectionWrite = dbconfig.default.db_connection;
-        if (write) {
-            connectionWrite.getConnection(function (err: any, connection: any) {
-                const now = new Date();
-                if (err) {
-                    result_status = false
-                    result_message = err
-                    return console.error('error: ' + err.message);
-                }
-                let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn, created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + `'${now.toUTCString()}'`+ ")";
-                connection.query(sql_write, function (err: any, result: any) {
-                    if (err) {
-                      result_status = false
-                      result_message = err
-                      throw err;
-                    }
-                    console.log("1 record inserted");
-                    query_data_write = result
-                })
-                connection.release();
-            });
+        // let connectionWrite = dbconfig.default.db_connection;
+        // if (write) {
+        //     connectionWrite.getConnection(function (err: any, connection: any) {
+        //         const now = new Date();
+        //         if (err) {
+        //             result_status = false
+        //             result_message = err
+        //             return console.error('error: ' + err.message);
+        //         }
+        //         let sql_write = "INSERT INTO comments (comment, commenter_ip_address, book_isbn, created_at) VALUES (" + `'${data.comment}'` + "," + `'${data.ip_address}'` + "," + `'${data.isbn}'` + `'${now.toUTCString()}'`+ ")";
+        //         connection.query(sql_write, function (err: any, result: any) {
+        //             if (err) {
+        //               result_status = false
+        //               result_message = err
+        //               throw err;
+        //             }
+        //             console.log("1 record inserted");
+        //             query_data_write = result
+        //         })
+        //         connection.release();
+        //     });
+        //
+        //     connectionWrite.getConnection(function (err: any, connection: any) {
+        //         if (err) {
+        //             result_status = false
+        //             result_message = err
+        //             return console.error('error: ' + err.message);
+        //         }
+        //         let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
+        //         connection.query(sql_read, function (err: any, result: any) {
+        //             if (err) throw err;
+        //             query_data = result
+        //         })
+        //         connection.release();
+        //     })
+        //
+        // }
 
-            connectionWrite.getConnection(function (err: any, connection: any) {
-                if (err) {
-                    result_status = false
-                    result_message = err
-                    return console.error('error: ' + err.message);
-                }
-                let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
-                connection.query(sql_read, function (err: any, result: any) {
-                    if (err) throw err;
-                    query_data = result
-                })
-                connection.release();
-            })
-
-        }
     } catch (error) {
         console.log(error)
     }
