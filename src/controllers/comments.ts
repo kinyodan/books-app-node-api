@@ -64,7 +64,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                         throw err;
                     }
                     console.log("1 record inserted");
-                    query_data_write = result
+                    result_message = "Saved succesfully"
+
+                    // query_data_write = result
                     connection.end();
                 })
                 console.log("Connected! to pg--------------------------------------------------------------");
@@ -79,9 +81,9 @@ const connectDbWrite = async (data: any, read: boolean, write: boolean, destinat
                 }
                 let sql_read = "SELECT * FROM comments WHERE book_isbn=" + `'${data.isbn}'` + " ORDER BY created_at DESC";
                 connection.query(sql_read, function (err: any, result: any) {
-                    console.log(result)
                     if (err) throw err;
                     query_data_write = result
+                    console.log(query_data_write)
                     connection.end();
                 })
                 // connection.release();
