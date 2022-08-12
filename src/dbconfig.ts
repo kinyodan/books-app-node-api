@@ -10,6 +10,7 @@ if(process.env.NODE_ENV === 'production'){
       user: process.env.PRODUCTION_DB_USER || '',
       password: process.env.PRODUCTION_DB_PASSWORD || '',
       database: process.env.PRODUCTION_DATABASE || '',
+      acquireTimeout:6000000,
     }
 }
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
       password: process.env.LOCAL_DB_PASSWORD ,
       database: process.env.LOCAL_DATABASE ,
       connectionLimit: 10,
+      acquireTimeout:6000000,
       debug: false
    };
 }
